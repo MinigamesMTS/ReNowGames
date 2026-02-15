@@ -145,7 +145,6 @@
 
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <h3 id="gameTitle"></h3>
@@ -162,34 +161,15 @@
     </div>
 </div>
 
-<script>
-const games = document.querySelectorAll(".game");
-const modal = document.getElementById("modal");
-const gameTitle = document.getElementById("gameTitle");
-const megaLink = document.getElementById("megaLink");
-const mediafireLink = document.getElementById("mediafireLink");
-const closeBtn = document.getElementById("closeBtn");
+<!-- ===== MENÚ FLOTANTE ===== -->
+<div class="menu-wrapper">
+    <button class="menu-btn" id="menuBtn">MENÚ</button>
 
-games.forEach(game => {
-    game.addEventListener("click", () => {
-        gameTitle.innerText = game.innerText;
-        megaLink.href = game.dataset.mega;
-        mediafireLink.href = game.dataset.mediafire;
-        modal.classList.add("active");
-    });
-});
-
-closeBtn.addEventListener("click", () => {
-    modal.classList.remove("active");
-});
-
-/* Cerrar al hacer click fuera */
-modal.addEventListener("click", (e) => {
-    if(e.target === modal){
-        modal.classList.remove("active");
-    }
-});
-</script>
+    <div class="menu-dropdown" id="menuDropdown">
+        <a href="index.html">Juegos</a>
+        <a href="programas.html">Programas</a>
+    </div>
+</div>
 
 <script>
 const games = document.querySelectorAll(".game");
@@ -200,41 +180,53 @@ const mediafireLink = document.getElementById("mediafireLink");
 const closeBtn = document.getElementById("closeBtn");
 const searchInput = document.querySelector(".search");
 
+const menuBtn = document.getElementById("menuBtn");
+const menuDropdown = document.getElementById("menuDropdown");
+
 /* CLICK EN JUEGO */
 games.forEach(game => {
     game.addEventListener("click", () => {
         gameTitle.innerText = game.innerText;
-        megaLink.href = game.dataset.mega;
-        mediafireLink.href = game.dataset.mediafire;
+        megaLink.href = game.dataset.mega || "#";
+        mediafireLink.href = game.dataset.mediafire || "#";
         modal.classList.add("active");
     });
 });
 
-/* CERRAR */
+/* CERRAR MODAL */
 closeBtn.addEventListener("click", () => {
     modal.classList.remove("active");
 });
 
 modal.addEventListener("click", (e) => {
-    if(e.target === modal){
+    if (e.target === modal) {
         modal.classList.remove("active");
     }
 });
 
-/* 🔎 BUSCADOR FUNCIONANDO */
+/* BUSCADOR */
 searchInput.addEventListener("input", () => {
     const value = searchInput.value.toLowerCase();
 
     games.forEach(game => {
         const text = game.innerText.toLowerCase();
-
-        if(text.includes(value)){
-            game.style.display = "block";
-        } else {
-            game.style.display = "none";
-        }
+        game.style.display = text.includes(value) ? "block" : "none";
     });
 });
-</script>    
+
+/* MENÚ */
+menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menuDropdown.classList.toggle("active");
+});
+
+/* Cerrar menú si haces click fuera */
+document.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+        menuDropdown.classList.remove("active");
+    }
+});
+</script>
+
 </body>
 </html>
