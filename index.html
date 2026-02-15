@@ -144,8 +144,28 @@
 </div>
 
 </div>
+    <div class="section" id="programas" style="display:none;">
+        <h3>Programas</h3>
+        <div class="list">
 
-<!-- MODAL -->
+            <div class="game"
+            data-mega="https://mega.nz/ejemplo3"
+            data-mediafire="https://mediafire.com/ejemplo3">
+            Photoshop
+            </div>
+
+            <div class="game"
+            data-mega="https://mega.nz/ejemplo4"
+            data-mediafire="https://mediafire.com/ejemplo4">
+            Sony Vegas
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+    
 <div class="modal" id="modal">
     <div class="modal-content">
         <h3 id="gameTitle"></h3>
@@ -190,7 +210,22 @@ modal.addEventListener("click", (e) => {
     }
 });
 </script>
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3 id="gameTitle"></h3>
 
+        <a id="megaLink" target="_blank">
+            <button class="button mega">MEGA</button>
+        </a>
+
+        <a id="mediafireLink" target="_blank">
+            <button class="button mediafire">MEDIAFIRE</button>
+        </a>
+
+        <button class="close" id="closeBtn">Cerrar</button>
+    </div>
+</div>
+    
 <script>
 const games = document.querySelectorAll(".game");
 const modal = document.getElementById("modal");
@@ -199,8 +234,9 @@ const megaLink = document.getElementById("megaLink");
 const mediafireLink = document.getElementById("mediafireLink");
 const closeBtn = document.getElementById("closeBtn");
 const searchInput = document.querySelector(".search");
+const menuItems = document.querySelectorAll(".menu-item");
+const sections = document.querySelectorAll(".section");
 
-/* CLICK EN JUEGO */
 games.forEach(game => {
     game.addEventListener("click", () => {
         gameTitle.innerText = game.innerText;
