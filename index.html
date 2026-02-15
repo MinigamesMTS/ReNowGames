@@ -145,6 +145,7 @@
 
 </div>
 
+<!-- MODAL -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <h3 id="gameTitle"></h3>
@@ -161,16 +162,6 @@
     </div>
 </div>
 
-<!-- ===== MENÚ FLOTANTE ===== -->
-<div class="menu-wrapper">
-    <button class="menu-btn" id="menuBtn">MENÚ</button>
-
-    <div class="menu-dropdown" id="menuDropdown">
-        <a href="index.html">Juegos</a>
-        <a href="programas.html">Programas</a>
-    </div>
-</div>
-
 <script>
 const games = document.querySelectorAll(".game");
 const modal = document.getElementById("modal");
@@ -178,53 +169,27 @@ const gameTitle = document.getElementById("gameTitle");
 const megaLink = document.getElementById("megaLink");
 const mediafireLink = document.getElementById("mediafireLink");
 const closeBtn = document.getElementById("closeBtn");
-const searchInput = document.querySelector(".search");
 
-const menuBtn = document.getElementById("menuBtn");
-const menuDropdown = document.getElementById("menuDropdown");
-
-/* CLICK EN JUEGO */
 games.forEach(game => {
     game.addEventListener("click", () => {
         gameTitle.innerText = game.innerText;
-        megaLink.href = game.dataset.mega || "#";
-        mediafireLink.href = game.dataset.mediafire || "#";
+        megaLink.href = game.dataset.mega;
+        mediafireLink.href = game.dataset.mediafire;
         modal.classList.add("active");
     });
 });
 
-/* CERRAR MODAL */
 closeBtn.addEventListener("click", () => {
     modal.classList.remove("active");
 });
 
+/* Cerrar al hacer click fuera */
 modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
+    if(e.target === modal){
         modal.classList.remove("active");
     }
 });
-
-/* BUSCADOR */
-searchInput.addEventListener("input", () => {
-    const value = searchInput.value.toLowerCase();
-
-    games.forEach(game => {
-        const text = game.innerText.toLowerCase();
-        game.style.display = text.includes(value) ? "block" : "none";
-    });
-});
-    
-</script>  <!-- aquí termina TODO tu JS -->
-
-<!-- ===== MENÚ LATERAL ===== -->
-<div class="menu-wrapper">
-    <button class="menu-btn" id="menuBtn">MENÚ</button>
-
-    <div class="menu-dropdown" id="menuDropdown">
-        <a href="index.html">Juegos</a>
-        <a href="programas.html">Programas</a>
-    </div>
-</div>
+</script>
 
 </body>
 </html>
