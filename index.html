@@ -213,20 +213,18 @@ searchInput.addEventListener("input", () => {
         game.style.display = text.includes(value) ? "block" : "none";
     });
 });
+    
+</script>  <!-- aquí termina TODO tu JS -->
 
-/* MENÚ */
-menuBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    menuDropdown.classList.toggle("active");
-});
+<!-- ===== MENÚ LATERAL ===== -->
+<div class="menu-wrapper">
+    <button class="menu-btn" id="menuBtn">MENÚ</button>
 
-/* Cerrar menú si haces click fuera */
-document.addEventListener("click", (e) => {
-    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
-        menuDropdown.classList.remove("active");
-    }
-});
-</script>
+    <div class="menu-dropdown" id="menuDropdown">
+        <a href="index.html">Juegos</a>
+        <a href="programas.html">Programas</a>
+    </div>
+</div>
 
 </body>
 </html>
