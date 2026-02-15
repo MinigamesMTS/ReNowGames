@@ -30,8 +30,8 @@ body::before{
 }
 
 .container{
-    width:350px;
-    margin:50px auto;
+    width:450px;      /* Más ancho */
+    margin:120px auto; /* Más abajo */
 }
 
 .search{
@@ -50,13 +50,13 @@ body::before{
     background:rgba(20,20,20,0.8);
     backdrop-filter:blur(15px);
     border-radius:20px;
-    padding:15px;
+    padding:35px;
     color:white;
     box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
 .list{
-    max-height:250px;
+    max-height:400px;
     overflow-y:auto;
     padding-right:5px;
 }
