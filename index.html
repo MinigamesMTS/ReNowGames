@@ -13,11 +13,12 @@
 <input type="text" class="search" placeholder="Buscar...">
 
 <div class="panel">
-    <h3>Juegos</h3>
+    <h3 id="panelTitle">Juegos</h3>
 
-    <div class="list">
+    <!-- ================= JUEGOS ================= -->
+    <div class="list" id="gamesList">
 
-        <!-- SOLO DUPLICAS ESTO PARA MÁS JUEGOS -->
+        <!-- TUS JUEGOS (NO TOQUÉ NADA) -->
 
         <div class="game"
         data-mega="https://mega.nz/file/hzQw0YyT#jdPJ7mnXzaptbfdw7hQEgI-e7kB89rT-qUdPgk9t1OM"
@@ -25,6 +26,7 @@
         Hello Neighbor
         </div>
 
+       
         <div class="game"
         data-mega="https://mega.nz/file/UZ0kgSaI#tViIfXYTQwBmY8eW6lf5oJrwNNjr_8LwZbmyr4G11S4"
         data-mediafire="https://www.mediafire.com/file/j6qu9ayvld3rlx6/Dragonball+Xenoverse.rar/file">
@@ -141,11 +143,37 @@
 
 
     </div>
+
+    <!-- ================= PROGRAMAS ================= -->
+    <div class="list" id="programsList" style="display:none;">
+
+        <!-- DUPLICA ESTO PARA MÁS PROGRAMAS -->
+
+        <div class="game"
+        data-mega="https://adobe.com"
+        data-mediafire="https://adobe.com">
+        Photoshop
+        </div>
+
+        <div class="game"
+        data-mega="https://blender.org"
+        data-mediafire="https://blender.org">
+        Blender
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===== BOTONES ABAJO ===== -->
+<div class="bottom-tabs">
+    <button class="tab-btn active" id="showGames">Juegos</button>
+    <button class="tab-btn" id="showPrograms">Programas</button>
 </div>
 
 </div>
 
-<!-- MODAL -->
+<!-- ================= MODAL ================= -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <h3 id="gameTitle"></h3>
@@ -163,31 +191,66 @@
 </div>
 
 <script>
-const games = document.querySelectorAll(".game");
 const modal = document.getElementById("modal");
 const gameTitle = document.getElementById("gameTitle");
 const megaLink = document.getElementById("megaLink");
 const mediafireLink = document.getElementById("mediafireLink");
 const closeBtn = document.getElementById("closeBtn");
+const searchInput = document.querySelector(".search");
 
-games.forEach(game => {
-    game.addEventListener("click", () => {
-        gameTitle.innerText = game.innerText;
-        megaLink.href = game.dataset.mega;
-        mediafireLink.href = game.dataset.mediafire;
+const showGames = document.getElementById("showGames");
+const showPrograms = document.getElementById("showPrograms");
+const gamesList = document.getElementById("gamesList");
+const programsList = document.getElementById("programsList");
+const panelTitle = document.getElementById("panelTitle");
+
+/* ===== CAMBIO ENTRE JUEGOS Y PROGRAMAS ===== */
+showGames.addEventListener("click", () => {
+    gamesList.style.display = "block";
+    programsList.style.display = "none";
+    panelTitle.innerText = "Juegos";
+    showGames.classList.add("active");
+    showPrograms.classList.remove("active");
+});
+
+showPrograms.addEventListener("click", () => {
+    gamesList.style.display = "none";
+    programsList.style.display = "block";
+    panelTitle.innerText = "Programas";
+    showPrograms.classList.add("active");
+    showGames.classList.remove("active");
+});
+
+/* ===== MODAL FUNCIONA PARA TODO ===== */
+document.addEventListener("click", function(e){
+    if(e.target.classList.contains("game")){
+        gameTitle.innerText = e.target.innerText;
+        megaLink.href = e.target.dataset.mega || "#";
+        mediafireLink.href = e.target.dataset.mediafire || "#";
         modal.classList.add("active");
-    });
+    }
 });
 
 closeBtn.addEventListener("click", () => {
     modal.classList.remove("active");
 });
 
-/* Cerrar al hacer click fuera */
 modal.addEventListener("click", (e) => {
     if(e.target === modal){
         modal.classList.remove("active");
     }
+});
+
+/* ===== BUSCADOR ===== */
+searchInput.addEventListener("input", () => {
+    const value = searchInput.value.toLowerCase();
+    const visibleList = gamesList.style.display !== "none" ? gamesList : programsList;
+    const items = visibleList.querySelectorAll(".game");
+
+    items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(value) ? "block" : "none";
+    });
 });
 </script>
 
