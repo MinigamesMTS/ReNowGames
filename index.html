@@ -17,23 +17,23 @@
 
     <div class="list">
 
-        <!-- EJEMPLOS (solo cambias los links) -->
+        <!-- SOLO DUPLICAS ESTO PARA MÁS JUEGOS -->
 
         <div class="game"
-        data-mega="https://mega.nz/HELLO"
-        data-mediafire="https://mediafire.com/HELLO">
+        data-mega="https://mega.nz/ejemplo1"
+        data-mediafire="https://mediafire.com/ejemplo1">
         Hello Neighbor
         </div>
 
         <div class="game"
-        data-mega="https://mega.nz/XENO"
-        data-mediafire="https://mediafire.com/XENO">
+        data-mega="https://mega.nz/ejemplo2"
+        data-mediafire="https://mediafire.com/ejemplo2">
         Dragon Ball Xenoverse
         </div>
 
         <div class="game"
-        data-mega="https://mega.nz/HOLLOW"
-        data-mediafire="https://mediafire.com/HOLLOW">
+        data-mega="https://mega.nz/ejemplo3"
+        data-mediafire="https://mediafire.com/ejemplo3">
         Hollow Knight
         </div>
 
@@ -55,7 +55,7 @@
             <button class="button mediafire">MEDIAFIRE</button>
         </a>
 
-        <button class="close">Cerrar</button>
+        <button class="close" id="closeBtn">Cerrar</button>
     </div>
 </div>
 
@@ -65,24 +65,26 @@ const modal = document.getElementById("modal");
 const gameTitle = document.getElementById("gameTitle");
 const megaLink = document.getElementById("megaLink");
 const mediafireLink = document.getElementById("mediafireLink");
-const closeBtn = document.querySelector(".close");
+const closeBtn = document.getElementById("closeBtn");
 
 games.forEach(game => {
     game.addEventListener("click", () => {
-        const title = game.innerText;
-        const mega = game.getAttribute("data-mega");
-        const mediafire = game.getAttribute("data-mediafire");
-
-        gameTitle.innerText = title;
-        megaLink.href = mega;
-        mediafireLink.href = mediafire;
-
-        modal.style.display = "flex";
+        gameTitle.innerText = game.innerText;
+        megaLink.href = game.dataset.mega;
+        mediafireLink.href = game.dataset.mediafire;
+        modal.classList.add("active");
     });
 });
 
 closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
+    modal.classList.remove("active");
+});
+
+/* Cerrar al hacer click fuera */
+modal.addEventListener("click", (e) => {
+    if(e.target === modal){
+        modal.classList.remove("active");
+    }
 });
 </script>
 
