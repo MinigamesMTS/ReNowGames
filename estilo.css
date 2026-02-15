@@ -153,3 +153,61 @@ body::before{
     background:#444;
     color:white;
 }
+
+.menu-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2000;
+}
+
+.menu-btn {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%; /* Hace el botón circular */
+    background: rgba(30,30,30,0.95);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    transition: transform 0.3s;
+}
+
+.menu-btn:hover {
+    transform: scale(1.1); /* Agranda un poco al pasar el mouse */
+}
+
+.menu-dropdown {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    background: rgba(20,20,20,0.95);
+    border-radius: 10px;
+    padding: 10px 0;
+    width: 180px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    transition: opacity 0.3s;
+}
+
+.menu-dropdown.active {
+    display: flex;
+}
+
+.menu-dropdown a {
+    text-decoration: none;
+    color: white;
+    padding: 12px 20px;
+    transition: background 0.3s;
+}
+
+.menu-dropdown a:hover {
+    background: rgba(0, 255, 204, 0.1); /* resalta con un toque verde suave */
+    padding-left: 25px;
+}
