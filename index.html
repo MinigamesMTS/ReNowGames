@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel estilo Opti</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("fondo.jpg"); /* 🔥 CAMBIA ESTA IMAGEN */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Oscurecer fondo */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index:-1;
+}
+
+.container{
+    width:350px;
+    margin:50px auto;
+}
+
+/* Barra de búsqueda */
+.search{
+    width:100%;
+    padding:12px;
+    border-radius:15px;
+    border:none;
+    outline:none;
+    background: rgba(255,255,255,0.1);
+    color:white;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin-bottom:20px;
+}
+
+/* Panel principal */
+.panel{
+    background: rgba(20,20,20,0.7);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    padding:15px;
+    color:white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* Título */
+.panel h3{
+    margin:0 0 10px 0;
+    font-size:18px;
+}
+
+/* Lista */
+.list{
+    max-height:250px;
+    overflow-y:auto;
+    padding-right:5px;
+}
+
+.list div{
+    padding:8px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.list div:hover{
+    background: rgba(255,255,255,0.1);
+}
+
+/* Scroll personalizado */
+.list::-webkit-scrollbar{
+    width:6px;
+}
+.list::-webkit-scrollbar-thumb{
+    background:#00ffcc;
+    border-radius:10px;
+}
+
+/* Botón inferior */
+.download-box{
+    margin-top:15px;
+    background: rgba(20,20,20,0.7);
+    backdrop-filter: blur(15px);
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+    color:white;
+}
+
+.button{
+    margin-top:10px;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background: linear-gradient(90deg,#00ffcc,#0099ff);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    width:100%;
+    transition:0.3s;
+}
+
+.button:hover{
+    opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<input type="text" class="search" placeholder="Buscar...">
+
+<div class="panel">
+    <h3>Redes y demás</h3>
+
+    <div class="list">
+        <div>Acelerar Descargas</div>
+        <div>Acerca de Mi</div>
+        <div>Canal de YouTube</div>
+        <div>Canal de Proyectos</div>
+        <div>Canales de WhatsApp</div>
+        <div>Comprimir audios y videos</div>
+        <div>Corregir pixeles muertos</div>
+        <div>Cuenta de Instagram</div>
+        <div>Cuenta de TikTok</div>
+        <div>Donaciones</div>
+        <div>Historia</div>
+    </div>
+</div>
+
+<div class="download-box">
+    <h3>Descargas</h3>
+    <button class="button">Leer</button>
+</div>
+
+</div>
+
+</body>
+</html>
