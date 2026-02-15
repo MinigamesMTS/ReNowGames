@@ -191,5 +191,50 @@ modal.addEventListener("click", (e) => {
 });
 </script>
 
+<script>
+const games = document.querySelectorAll(".game");
+const modal = document.getElementById("modal");
+const gameTitle = document.getElementById("gameTitle");
+const megaLink = document.getElementById("megaLink");
+const mediafireLink = document.getElementById("mediafireLink");
+const closeBtn = document.getElementById("closeBtn");
+const searchInput = document.querySelector(".search");
+
+/* CLICK EN JUEGO */
+games.forEach(game => {
+    game.addEventListener("click", () => {
+        gameTitle.innerText = game.innerText;
+        megaLink.href = game.dataset.mega;
+        mediafireLink.href = game.dataset.mediafire;
+        modal.classList.add("active");
+    });
+});
+
+/* CERRAR */
+closeBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+});
+
+modal.addEventListener("click", (e) => {
+    if(e.target === modal){
+        modal.classList.remove("active");
+    }
+});
+
+/* 🔎 BUSCADOR FUNCIONANDO */
+searchInput.addEventListener("input", () => {
+    const value = searchInput.value.toLowerCase();
+
+    games.forEach(game => {
+        const text = game.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            game.style.display = "block";
+        } else {
+            game.style.display = "none";
+        }
+    });
+});
+</script>    
 </body>
 </html>
